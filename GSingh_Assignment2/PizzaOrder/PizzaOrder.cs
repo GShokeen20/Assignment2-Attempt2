@@ -21,6 +21,8 @@ namespace PizzaOrder
     {
         RadioButton selectedPizza = null;
         CheckBox selectedToppings = null;
+        RadioButton selectedCheeze = null;
+        RadioButton selectedSauce = null;
         public PizzaOrder()
         {
             InitializeComponent();
@@ -107,49 +109,7 @@ namespace PizzaOrder
         private void btnToppings_CheckedChanged(object sender, EventArgs e)
         {
             selectedToppings = (CheckBox)sender;
-            if (rdbSauceNone.Checked == true)
-            {
-                myPizza[currentPizzaIndex].btnSauce = "None";
-            }
-            else if (rdbSauceLight.Checked == true)
-            {
-                myPizza[currentPizzaIndex].btnSauce = "Light";
-            }
-            else if (rdbSauceNormal.Checked == true)
-            {
-                myPizza[currentPizzaIndex].btnSauce = "Normal";
-            }
-            else if (rdbSauceHeavy.Checked == true)
-            {
-                myPizza[currentPizzaIndex].btnSauce = "Heavy";
-            }
-            else
-            {
-                myPizza[currentPizzaIndex].btnSauce = "None";
-            }
-
-
-            if (rdbCheeseNone.Checked == true)
-            {
-                myPizza[currentPizzaIndex].btnCheeze = "None";
-            }
-            else if (rdbCheeseLight.Checked == true)
-            {
-                myPizza[currentPizzaIndex].btnCheeze = "Light";
-            }
-            else if (rdbCheeseNormal.Checked == true)
-            {
-                myPizza[currentPizzaIndex].btnCheeze = "Normal";
-            }
-            else if (rdbCheeseHeavy.Checked == true)
-            {
-                myPizza[currentPizzaIndex].btnCheeze = "Heavy";
-            }
-            else
-            {
-                myPizza[currentPizzaIndex].btnCheeze = "None";
-            }
-
+            
             int j;
 
             if (selectedToppings != null)
@@ -211,6 +171,57 @@ namespace PizzaOrder
             }
         }
 
+        private void btnCheeze_Click(object sender, EventArgs e)
+        {
+            selectedCheeze = (RadioButton)sender;
+
+            if (rdbCheeseNone.Checked == true)
+            {
+                myPizza[currentPizzaIndex].btnCheeze = "None";
+            }
+            else if (rdbCheeseLight.Checked == true)
+            {
+                myPizza[currentPizzaIndex].btnCheeze = "Light";
+            }
+            else if (rdbCheeseNormal.Checked == true)
+            {
+                myPizza[currentPizzaIndex].btnCheeze = "Normal";
+            }
+            else if (rdbCheeseHeavy.Checked == true)
+            {
+                myPizza[currentPizzaIndex].btnCheeze = "Heavy";
+            }
+            else
+            {
+                myPizza[currentPizzaIndex].btnCheeze = "None";
+            }
+        }
+
+        private void btnSauce_Click(object sender, EventArgs e)
+        {
+            selectedSauce = (RadioButton)sender;
+            if (rdbSauceNone.Checked == true)
+            {
+                myPizza[currentPizzaIndex].btnSauce = "None";
+            }
+            else if (rdbSauceLight.Checked == true)
+            {
+                myPizza[currentPizzaIndex].btnSauce = "Light";
+            }
+            else if (rdbSauceNormal.Checked == true)
+            {
+                myPizza[currentPizzaIndex].btnSauce = "Normal";
+            }
+            else if (rdbSauceHeavy.Checked == true)
+            {
+                myPizza[currentPizzaIndex].btnSauce = "Heavy";
+            }
+            else
+            {
+                myPizza[currentPizzaIndex].btnSauce = "None";
+            }
+
+        }
         private void btnStartNewOrder_Click(object sender, EventArgs e)
         {
             txtSpecialInstructions.Clear();
