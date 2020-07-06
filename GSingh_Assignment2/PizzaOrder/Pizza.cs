@@ -14,7 +14,7 @@ namespace PizzaOrder
         bool[] toppings=new bool[11];
         static string[] topppingNames = {"Pepperoni","Bacon","Ham","Mushrooms","Pineapple","Tomato","Green Peppers","Onion","Spinach","Olives, Black","Olives, Green"};
         string instructions;
-        private int addedIndex;
+        public int addedIndex;
         public Pizza(int index)
         {
             btnSauce = "None";
