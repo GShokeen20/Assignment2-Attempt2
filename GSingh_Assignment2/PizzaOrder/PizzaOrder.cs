@@ -76,8 +76,9 @@ namespace PizzaOrder
                         box.Height = 130;
                         box.Location = new Point(locationRow, locationRow * (i + 1));
 
-                        box.Tag = i+1;
                         Pizza pizza = new Pizza(i+1);
+                        box.Tag = pizza;
+
                         
                         lblForButtons.Controls.Add(box);
                         myPizza[i] = pizza;
@@ -99,7 +100,7 @@ namespace PizzaOrder
             RadioButton box = (RadioButton)sender;
             Pizza pizza = (Pizza)box.Tag;
             //selectedPizza = (RadioButton)sender;
-            //currentPizzaIndex = int.Parse(selectedPizza.Tag);
+            currentPizzaIndex = pizza.addedIndex-1;
             //if (selectedPizza != null)
             //{
                 box.Click += new EventHandler(btnToppings_CheckedChanged);
