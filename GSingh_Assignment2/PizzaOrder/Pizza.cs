@@ -11,29 +11,20 @@ namespace PizzaOrder
     {
         string btnSauce;
         string btnCheeze;
-        bool[] toppings=new bool[11];
-        static string[] topppingNames = {"Pepperoni","Bacon","Ham","Mushrooms","Pineapple","Tomato","Green Peppers","Onion","Spinach","Olives, Black","Olives, Green"};
+        string toppings;
         string instructions;
         private int addedIndex;
         public Pizza(int index)
         {
             btnSauce = "None";
             btnCheeze = "None";
-            for(int i=0;i<11;i++){
-                toppings[i]=false;
-            }
+            toppings = "";
             instructions = "N/A";
             addedIndex = index;
         }
         public string GetInfo(string toppings)
         {
-            string toppingString = "";
-            for(int i=0;i<11;i++){
-                if(topping[i]){
-                    toppingString+=toppingNames[i];
-                }
-            }
-            return $"Pizza #{addedIndex}:\nToppings:   {btnSauce}\n   {toppingString}\n   {btnCheeze}\nInstructions:{instructions}";
+            return $"Pizza #{addedIndex}:\nToppings:   {btnSauce}\n   {toppings}\n   {btnCheeze}\nInstructions:{instructions}";
         }
     }
 }
