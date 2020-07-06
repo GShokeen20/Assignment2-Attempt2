@@ -1,4 +1,4 @@
-﻿/*
+/*
  * File Name: PizzaOrder.cs
  * Assignment2 for PROG1815-20S-Sec2-Programming Concepts II
  * 
@@ -20,6 +20,7 @@ namespace PizzaOrder
     public partial class PizzaOrder : Form
     {
         RadioButton selectedPizza = null;
+        CheckBox selectedToppings = null;
         public PizzaOrder()
         {
             InitializeComponent();
@@ -39,9 +40,8 @@ namespace PizzaOrder
 
         Pizza[] myPizza = new Pizza[9];
         string toppings;
-        string sauce = "";
-        string cheese = "";
-        string currentPizzaIndex=0;
+        string instructions = "N/A";
+        int currentPizzaIndex = 0;
         private void btnStart_Click(object sender, EventArgs e)
         {
             lblForButtons.Enabled = true;
@@ -94,159 +94,124 @@ namespace PizzaOrder
 
         private void DynamicRadioBox_Click(object sender, EventArgs e)
         {
-            selectedPizza = (RadioButton)sender;
-            currentPizzaIndex = selectedPizza.Tag;
-            selectedPizza.Click += new EventHandler(btnToppings_Click);
+            RadioButton box = (RadioButton)sender;
+            Pizza pizza = (Pizza)box.Tag;
+            //selectedPizza = (RadioButton)sender;
+            //currentPizzaIndex = int.Parse(selectedPizza.Tag);
+            //if (selectedPizza != null)
+            //{
+                box.Click += new EventHandler(btnToppings_CheckedChanged);
+            //}
         }
 
-        private void btnToppings_Click(object sender, EventArgs e)
+        private void btnToppings_CheckedChanged(object sender, EventArgs e)
         {
+            selectedToppings = (CheckBox)sender;
             if (rdbSauceNone.Checked == true)
             {
-                myPizza[currentPizzaIndex].sauce = "None";
+                myPizza[currentPizzaIndex].btnSauce = "None";
             }
             else if (rdbSauceLight.Checked == true)
             {
-                myPizza[currentPizzaIndex].sauce = "Light";
+                myPizza[currentPizzaIndex].btnSauce = "Light";
             }
             else if (rdbSauceNormal.Checked == true)
             {
-                myPizza[currentPizzaIndex].sauce = "Normal";
+                myPizza[currentPizzaIndex].btnSauce = "Normal";
             }
             else if (rdbSauceHeavy.Checked == true)
             {
-                myPizza[currentPizzaIndex].sauce = "Heavy";
+                myPizza[currentPizzaIndex].btnSauce = "Heavy";
             }
             else
             {
-                myPizza[currentPizzaIndex].sauce = "None";
+                myPizza[currentPizzaIndex].btnSauce = "None";
             }
 
 
             if (rdbCheeseNone.Checked == true)
             {
-                myPizza[currentPizzaIndex].cheese = "None";
+                myPizza[currentPizzaIndex].btnCheeze = "None";
             }
             else if (rdbCheeseLight.Checked == true)
             {
-                myPizza[currentPizzaIndex].cheese = "Light";
+                myPizza[currentPizzaIndex].btnCheeze = "Light";
             }
             else if (rdbCheeseNormal.Checked == true)
             {
-                myPizza[currentPizzaIndex].cheese = "Normal";
+                myPizza[currentPizzaIndex].btnCheeze = "Normal";
             }
             else if (rdbCheeseHeavy.Checked == true)
             {
-                myPizza[currentPizzaIndex].cheese = "Heavy";
+                myPizza[currentPizzaIndex].btnCheeze = "Heavy";
             }
             else
             {
-                myPizza[currentPizzaIndex].cheese = "None";
+                myPizza[currentPizzaIndex].btnCheeze = "None";
             }
 
             int j;
 
-            if (chk0.Checked == true)
+            if (selectedToppings != null)
             {
-                myPizza[currentPizzaIndex].toppings[0] = true;
-            }
-            else
-            {
-                myPizza[currentPizzaIndex].toppings[0] = false;
-            }
+                if (chk0.Checked == true)
+                {
+                    myPizza[currentPizzaIndex].topping[0] = true;
+                }
 
-            if (chk1.Checked == true)
-            {
-                myPizza[currentPizzaIndex].toppings[1] = true;
-            }
-            else
-            {
-                myPizza[currentPizzaIndex].toppings[1] = false;
-            }
+                if (chk1.Checked == true)
+                {
+                    myPizza[currentPizzaIndex].topping[1] = true;
+                }
 
-            if (chk2.Checked == true)
-            {
-                myPizza[currentPizzaIndex].toppings[2] = true;
-            }
-            else
-            {
-                myPizza[currentPizzaIndex].toppings[2] = false;
-            }
+                if (chk2.Checked == true)
+                {
+                    myPizza[currentPizzaIndex].topping[2] = true;
+                }
 
-            if (chk3.Checked == true)
-            {
-                myPizza[currentPizzaIndex].toppings[3] = true;
-            }
-            else
-            {
-                myPizza[currentPizzaIndex].toppings[3] = false;
-            }
+                if (chk3.Checked == true)
+                {
+                    myPizza[currentPizzaIndex].topping[3] = true;
+                }
 
-            if (chk4.Checked == true)
-            {
-                myPizza[currentPizzaIndex].toppings[4] = true;
-            }
-            else
-            {
-                myPizza[currentPizzaIndex].toppings[4] = false;
-            }
+                if (chk4.Checked == true)
+                {
+                    myPizza[currentPizzaIndex].topping[4] = true;
+                }
 
-            if (chk5.Checked == true)
-            {
-                myPizza[currentPizzaIndex].toppings[5] = true;
-            }
-            else
-            {
-                myPizza[currentPizzaIndex].toppings[5] = false;
-            }
+                if (chk5.Checked == true)
+                {
+                    myPizza[currentPizzaIndex].topping[5] = true;
+                }
 
-            if (chk6.Checked == true)
-            {
-                myPizza[currentPizzaIndex].toppings[6] = true;
-            }
-            else
-            {
-                myPizza[currentPizzaIndex].toppings[6] = false;
-            }
+                if (chk6.Checked == true)
+                {
+                    myPizza[currentPizzaIndex].topping[6] = true;
+                }
 
-            if (chk7.Checked == true)
-            {
-                myPizza[currentPizzaIndex].toppings[7] = true;
-            }
-            else
-            {
-                myPizza[currentPizzaIndex].toppings[7] = false;
-            }
+                if (chk7.Checked == true)
+                {
+                    myPizza[currentPizzaIndex].topping[7] = true;
+                }
 
-            if (chk8.Checked == true)
-            {
-                myPizza[currentPizzaIndex].toppings[8] = true;
-            }
-            else
-            {
-                myPizza[currentPizzaIndex].toppings[8] = false;
-            }
+                if (chk8.Checked == true)
+                {
+                    myPizza[currentPizzaIndex].topping[8] = true;
+                }
 
-            if (chk9.Checked == true)
-            {
-                myPizza[currentPizzaIndex].toppings[9] = true;
-            }
-            else
-            {
-                myPizza[currentPizzaIndex].toppings[9] = false;
-            }
+                if (chk9.Checked == true)
+                {
+                    myPizza[currentPizzaIndex].topping[9] = true;
+                }
 
-            if (chk10.Checked == true)
-            {
-                myPizza[currentPizzaIndex].toppings[10] = true;
-            }
-            else
-            {
-                myPizza[currentPizzaIndex].toppings[10] = false;
+                if (chk10.Checked == true)
+                {
+                    myPizza[currentPizzaIndex].topping[10] = true;
+                }
             }
         }
 
-            private void btnStartNewOrder_Click(object sender, EventArgs e)
+        private void btnStartNewOrder_Click(object sender, EventArgs e)
         {
             txtSpecialInstructions.Clear();
             txtBoxCount.Clear();
@@ -268,10 +233,9 @@ namespace PizzaOrder
         {
             Button box = (Button)sender;
             Pizza pizza = myPizza[currentPizzaIndex];
-            pnlOrder.Visible = true;
-            for(int i = 0; i < 11; i++)
+            for (int i = 0; i < 11; i++)
             {
-                toppings += pizza.toppings[i] + Environment.NewLine;
+                toppings += pizza.topping[i] + Environment.NewLine;
             }
             pnlTotalOrder.Text = pizza.GetInfo(toppings);
         }
