@@ -1,0 +1,10 @@
+D:\C#_Sem2\Assignments\GSingh_Assignment2\PizzaOrder\bin\Debug\PizzaOrder.exe.config
+D:\C#_Sem2\Assignments\GSingh_Assignment2\PizzaOrder\bin\Debug\PizzaOrder.exe
+D:\C#_Sem2\Assignments\GSingh_Assignment2\PizzaOrder\bin\Debug\PizzaOrder.pdb
+D:\C#_Sem2\Assignments\GSingh_Assignment2\PizzaOrder\obj\Debug\PizzaOrder.csprojAssemblyReference.cache
+D:\C#_Sem2\Assignments\GSingh_Assignment2\PizzaOrder\obj\Debug\PizzaOrder.PizzaOrder.resources
+D:\C#_Sem2\Assignments\GSingh_Assignment2\PizzaOrder\obj\Debug\PizzaOrder.Properties.Resources.resources
+D:\C#_Sem2\Assignments\GSingh_Assignment2\PizzaOrder\obj\Debug\PizzaOrder.csproj.GenerateResource.cache
+D:\C#_Sem2\Assignments\GSingh_Assignment2\PizzaOrder\obj\Debug\PizzaOrder.csproj.CoreCompileInputs.cache
+D:\C#_Sem2\Assignments\GSingh_Assignment2\PizzaOrder\obj\Debug\PizzaOrder.exe
+D:\C#_Sem2\Assignments\GSingh_Assignment2\PizzaOrder\obj\Debug\PizzaOrder.pdb
