@@ -1,0 +1,173 @@
+/*
+ * File Name: photoAlbum.cs
+ * Assignment2 for PROG1815-20S-Sec2-Programming Concepts II
+ * 
+ * Revision History
+ *      Garima Singh, 2020-07-21 : Created
+*/
+using Microsoft.Win32;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Drawing.Imaging;
+using System.Windows.Media.Imaging;
+
+namespace PhotoAlbum
+{
+    public partial class photoAlbum : Form
+    {
+        public photoAlbum()
+        {
+            InitializeComponent();
+        }
+        List<Photo> pic = new List<Photo>();
+        List<PhotoAlbumClass> picAlbumClass = new List<PhotoAlbumClass>();
+        int flagVariable = 0;
+        private void photoAlbum_Load(object sender, EventArgs e)
+        {
+            rdbBlack.Checked = true;
+            //pnlNavigation.Enabled = false;
+            //btnSaveAlbum.Enabled = false;
+            btnCreateAlbum.Focus();
+            //flagVariable = pic.Count;
+        }
+
+        private void rdbBlack_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbBlack.Checked)
+            {
+                picAlbum.BackColor = Color.Black;
+            }
+        }
+
+        private void rdbWhite_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbWhite.Checked)
+            {
+                picAlbum.BackColor = Color.White;
+            }
+        }
+
+        private void rdbGrey_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbGrey.Checked)
+            {
+                picAlbum.BackColor = Color.Gray;
+            }
+        }
+
+        private void btnOpenAlbum_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog.Filter = "Image Files (*.alb)|*.alb";
+            OpenFileDialog.InitialDirectory = Environment.CurrentDirectory;
+            if (OpenFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string imageToOpen = OpenFileDialog.FileName;
+                picAlbum.ImageLocation = imageToOpen;
+            }
+        }
+
+        private void btnAddPhotos_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog.Filter = "Image Files (*.jpeg;*.jpg;*.bmp;*.gif)|*.jpeg;*.jpg;*.bmp;*.gif";
+            OpenFileDialog.InitialDirectory = Environment.CurrentDirectory;
+            OpenFileDialog.Multiselect = true;
+            
+            string imagePath;
+            string imagepath;
+
+            if (OpenFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string message = "";
+                foreach (string file in OpenFileDialog.FileNames)
+                {
+                    Photo newpic = new Photo();
+                    pic.Add(newpic);
+
+                    if (OpenFileDialog.FileName.ToString() != "")
+                    {
+                        imagePath = OpenFileDialog.FileName.ToString();
+                        imagepath = imagePath.ToString();
+                        imagepath = imagepath.Substring(imagepath.LastIndexOf("\\"));
+                        imagepath = imagepath.Remove(0, 1);
+                        newpic.imgName = imagepath;
+                        newpic.imgPath = imagePath;
+
+                        FileInfo fileInfo = new FileInfo(newpic.imgPath);
+                        DateTime dt = fileInfo.CreationTime;
+                        lblCreationDateAndTime.Text = "File Created: " + dt.ToString();
+
+                        if (txtDescription.Text != null)
+                        {
+                            newpic.imgDescription = txtDescription.Text;
+                        }
+                    }
+                    message += Path.GetFileName(file) + " - " + file + Environment.NewLine + newpic.imgDescription;
+                }
+                MessageBox.Show(message);                
+
+                string imageToOpen = OpenFileDialog.FileName;
+                picAlbum.ImageLocation = imageToOpen;
+
+                //newpic.imgName = OpenFileDialog.FileName;
+                //txtDescription.Text = newpic.imgName + Environment.NewLine + newpic.imgPath;                
+            }
+        }
+        
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (flagVariable == 0)
+            {
+                flagVariable = pic.Count-1;
+            }
+            else
+            {
+                flagVariable--;
+            }
+            if (flagVariable - 1 == (-1))
+            {
+                flagVariable = pic.Count;
+            }
+            txtDescription.Text += pic[flagVariable-1].imgPath.ToString();
+            picAlbum.Image = Image.FromFile(pic[flagVariable-1].imgPath.ToString());
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (flagVariable == pic.Count)
+            {
+                flagVariable = 0;
+            }
+            else
+            {
+                flagVariable++;
+            }
+            if (flagVariable - 1 == (-1))
+            {
+                flagVariable = 1;
+            }
+            txtDescription.Text += pic[flagVariable - 1].imgPath.ToString();
+            picAlbum.Image = Image.FromFile(pic[flagVariable - 1].imgPath.ToString());
+        }
+
+        private void btnSaveAlbum_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog.Filter = "Image Files (*.jpeg;*.jpg;*.bmp;*.gif)|*.jpeg;*.jpg;*.bmp;*.gif";
+            SaveFileDialog.InitialDirectory = Environment.CurrentDirectory;
+            
+            if (SaveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string userSelectedFile = SaveFileDialog.FileName;
+                
+            }
+        }
+    }
+}
